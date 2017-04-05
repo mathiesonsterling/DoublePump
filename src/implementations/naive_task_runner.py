@@ -1,6 +1,7 @@
 from src.entities import TaskRunner
 from src.entities import TaskStatus
 from src import TaskError
+from src.entities import TaskRunReport
 import time
 """
 Very basic runner that just runs things in a single thread
@@ -14,6 +15,8 @@ class NaiveTaskRunner(TaskRunner):
         self.logger = logger
 
     def run_task(self, task):
+        result = TaskRunReport(True)
+
         # get dependencies
         tasks = {}
         self.get_task_dependencies(task, tasks)
@@ -28,7 +31,12 @@ class NaiveTaskRunner(TaskRunner):
                     time.sleep(task.time_between_retries().seconds)
 
             if task.get_status() == TaskStatus.Failed():
-                raise TaskError(task.error_message)
+                result.error_messages = task.error_message
+                result.success = False
+                return result
+
+            return result
+
 
     def get_task_dependencies(self, task, found_tasks):
 
