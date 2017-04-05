@@ -1,5 +1,4 @@
-from src.entities import Task
-from src.implementations import MustRunTask
+from src.implementations.testing import MustRunTask
 
 class ParentTask(MustRunTask):
     def get_dependent_tasks(self):

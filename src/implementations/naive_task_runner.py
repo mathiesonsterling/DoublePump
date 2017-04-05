@@ -1,7 +1,7 @@
 from src.entities import TaskRunner
 from src.entities import TaskStatus
 from src import TaskError
-
+import time
 """
 Very basic runner that just runs things in a single thread
 """
@@ -24,6 +24,8 @@ class NaiveTaskRunner(TaskRunner):
             task.reset()
             while task.get_status() == TaskStatus.NeedsToBeDone():
                 task.do(self.resource)
+                if(task.get_status() == TaskStatus.NeedsToBeDone()):
+                    time.sleep(task.time_between_retries().seconds)
 
             if task.get_status() == TaskStatus.Failed():
                 raise TaskError(task.error_message)

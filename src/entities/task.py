@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from src.entities import TaskStatus
-
+import datetime
 """
 Abstract class for Task objects
 """
@@ -38,5 +38,8 @@ class Task(object):
 
     def reset(self):
         self.number_of_times_tried = 0
+
+    def time_between_retries(self):
+        return datetime.timedelta(milliseconds=10)
 
 

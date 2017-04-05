@@ -1,6 +1,6 @@
 from src.entities import TaskInstantiator
-from src.implementations import MustRunTask
-from src.implementations import ParentTask
+from src.implementations.testing import MustRunTask
+from src.implementations.testing import ParentTask
 """
 Holds all tasks as an instance, delivers them when asked
 """

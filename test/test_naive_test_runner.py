@@ -1,9 +1,9 @@
 import unittest
-from src.implementations import MustRunTask
+from src.implementations.testing import MustRunTask
 from src.implementations import NaiveTaskRunner
 from src.implementations import StoredTaskInstantiator
 from src.implementations import ConsoleLogger
-from src.implementations import ParentTask
+from src.implementations.testing import ParentTask
 
 class TestNaiveTestRunner(unittest.TestCase):
     def setUp(self):
