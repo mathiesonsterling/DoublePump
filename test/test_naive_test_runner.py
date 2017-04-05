@@ -16,16 +16,27 @@ class TestNaiveTestRunner(unittest.TestCase):
         task = MustRunTask()
 
         instant = StoredTaskInstantiator()
+        instant.add_task_instance(task)
+
         logger = ConsoleLogger()
         runner = NaiveTaskRunner(instant, logger)
 
-        runner.run_task(task)
+        res = runner.run_task(task, {})
+
+        self.assertIsNotNone(res)
+        self.assertTrue(res.success)
 
     def test_task_with_dependencies(self):
         task = ParentTask()
 
         instant = StoredTaskInstantiator()
+        instant.add_task_instance(task)
+        instant.add_task_instance(MustRunTask())
+
         logger = ConsoleLogger()
         runner = NaiveTaskRunner(instant, logger)
 
-        runner.run_task(task)
+        res = runner.run_task(task, {})
+
+        self.assertIsNotNone(res)
+        self.assertTrue(res.success)
