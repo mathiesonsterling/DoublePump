@@ -16,6 +16,8 @@ class TestNaiveTestRunner(unittest.TestCase):
         task = MustRunTask()
 
         instant = StoredTaskInstantiator()
+        instant.add_task_instance(task)
+
         logger = ConsoleLogger()
         runner = NaiveTaskRunner(instant, logger)
 
@@ -25,6 +27,9 @@ class TestNaiveTestRunner(unittest.TestCase):
         task = ParentTask()
 
         instant = StoredTaskInstantiator()
+        instant.add_task_instance(task)
+        instant.add_task_instance(MustRunTask())
+
         logger = ConsoleLogger()
         runner = NaiveTaskRunner(instant, logger)
 
