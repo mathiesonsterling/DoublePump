@@ -4,6 +4,7 @@ from src.implementations import NaiveTaskRunner
 from src.implementations import StoredTaskInstantiator
 from src.implementations import ConsoleLogger
 
+
 class TestCommandLineTask(unittest.TestCase):
     def setUp(self):
         pass
