@@ -10,7 +10,7 @@ class TaskRunner(object):
     Runs a given task, and all its dependencies
     """
     @abstractmethod
-    def run_task(self, task): pass
+    def run_task(self, task, resource): pass
 
     def set_resource(self, resource):
         self.resource = resource
