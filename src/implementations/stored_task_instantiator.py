@@ -9,6 +9,8 @@ class StoredTaskInstantiator(TaskInstantiator):
         self.known_tasks = {}
 
     def instantiate_task(self, task_name):
+        if task_name in self.known_tasks.keys():
+            raise LookupError("The task " + task_name + " is already stored")
         return self.known_tasks[task_name]
 
     def add_task_instance(self, task):
