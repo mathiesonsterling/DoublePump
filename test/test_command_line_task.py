@@ -20,4 +20,7 @@ class TestCommandLineTask(unittest.TestCase):
         logger = ConsoleLogger()
         runner = NaiveTaskRunner(instant, logger)
 
-        runner.run_task(task)
+        res = runner.run_task(task)
+
+        self.assertIsNotNone(res)
+        self.assertTrue(res.success)

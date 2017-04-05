@@ -5,6 +5,7 @@ import os
 class CommandLineTask(Task):
 
     def __init__(self, command, task_name, expected_return_code=0):
+        super(CommandLineTask, self).__init__()
         self.task_name = task_name
         self.command_string = command
         self.return_code = None
@@ -14,7 +15,7 @@ class CommandLineTask(Task):
         return []
 
     def do(self, resourceDictionary):
-        super(CommandLineTask, self).do()
+        super(CommandLineTask, self).do(resourceDictionary)
 
         self.return_code = os.system(self.command_string)
 
